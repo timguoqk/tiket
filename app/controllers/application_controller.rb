@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session, except: :api
 
   def must_be_admin
-    (current_user.admin?) ? () : (raise RoleForbiddenError)
+    raise RoleForbiddenError if current_user.admin?
   end
 
   private
